@@ -1,5 +1,15 @@
 
+import { useState } from "react";
+
+
+
 function Todo() {
+
+  let [text, setText] = useState("");
+
+  let [tasks, setTasks] = useState(["Learn React Hooks", "Build a Todo App", "Practice CSS"]);
+
+
   return (
  <>
  
@@ -20,25 +30,38 @@ function Todo() {
         
 
         <div class="input-box">
-          <input type="text" placeholder="What needs to be done?"/>
-            <button>+ Add Task</button>
-        </div>
+          <input onChange={(e) => {setText(e.target.value); }} value={text}  type="text" placeholder="What needs to be done?"/>
+            <button onClick={() => {setTasks([...tasks, text]); setText(""); }}>+ Add Task</button>
+        </div> 
 
         <div class="tasks">
 
-          <div class="task">
+
+          {tasks.map((task) => (
+            <div class="task">
+              <div class="check"></div>
+
+              <div class="task-content">
+                <h3>{task}</h3>
+              </div>
+            </div>
+          ))}
+
+
+
+          {/* <div class="task">
             <div class="check"></div>
 
             <div class="task-content">
-              <h3>Learn React Hooks</h3>
-              <p>Practice useState and useEffect</p>
+              <h3></h3>
+             
             </div>
 
             
             <button class="delete">×</button>
-          </div>
+          </div> */}
 
-          <div class="task completed">
+          {/* <div class="task completed">
             <div class="check">✓</div>
 
             <div class="task-content">
@@ -48,18 +71,18 @@ function Todo() {
 
            
             <button class="delete">×</button>
-          </div>
+          </div> */}
 
-          <div class="task">
+          {/* <div class="task">
             <div class="check"></div>
 
             <div class="task-content">
               <h3>Build Todo App</h3>
-              <p>Complete the React project</p>
+      
             </div>
 
             <button class="delete">×</button>
-          </div>
+          </div> */}
 
         </div>
 
