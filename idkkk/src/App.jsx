@@ -1,27 +1,37 @@
 
 import { useState } from "react";
 
-
-
 function Todo() {
 
   let [text, setText] = useState("");
+  let [tasks, setTasks] = useState([]);
+  let [completed, setCompleted] = useState(false);
 
-  let [tasks, setTasks] = useState(["Learn React Hooks", "Build a Todo App", "Practice CSS"]);
-
+ 
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+      )
+    );
+  };
+   
+  let deelete = () => {
+     setTasks(tasks.slice(1));
+  }
 
   return (
  <>
  
-      <div class="app">
+      <div className="app">
 
-        <div class="header">
+        <div className="header">
           <div>
             <h1>My Tasks</h1>
             <p>Stay focused. Get things done.</p>
           </div>
 
-          <div class="date">
+          <div className="date">
             <span>Today</span>
             <strong>10 Sep</strong>
           </div>
@@ -38,52 +48,15 @@ function Todo() {
 
 
           {tasks.map((task) => (
-            <div class="task">
+            <div className="task">
               <div class="check"></div>
 
-              <div class="task-content">
+              <div className="task-content">
                 <h3>{task}</h3>
               </div>
+              <button onClick={ deelete } className="delete">×</button>
             </div>
           ))}
-
-
-
-          {/* <div class="task">
-            <div class="check"></div>
-
-            <div class="task-content">
-              <h3></h3>
-             
-            </div>
-
-            
-            <button class="delete">×</button>
-          </div> */}
-
-          {/* <div class="task completed">
-            <div class="check">✓</div>
-
-            <div class="task-content">
-              <h3>Practice CSS</h3>
-              <p>Build a modern card design</p>
-            </div>
-
-           
-            <button class="delete">×</button>
-          </div> */}
-
-          {/* <div class="task">
-            <div class="check"></div>
-
-            <div class="task-content">
-              <h3>Build Todo App</h3>
-      
-            </div>
-
-            <button class="delete">×</button>
-          </div> */}
-
         </div>
 
       </div>
