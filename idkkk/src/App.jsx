@@ -5,19 +5,22 @@ function Todo() {
 
   let [text, setText] = useState("");
   let [tasks, setTasks] = useState([]);
-  let [completed, setCompleted] = useState(false);
-
  
-  const toggleComplete = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
-      )
-    );
-  };
+  let date = new Date();
+
+  let day = date.getDate();
+  let months = [
+    "Jan", "Feb", "Mar", "Apr",
+    "May", "Jun", "Jul", "Aug",
+    "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  let month = months[date.getMonth()];
+
+  
    
-  let deelete = () => {
-     setTasks(tasks.slice(1));
+  let deelete = (index) => {
+    setTasks(tasks.filter((task, i) => i !== index));
   }
 
   return (
@@ -33,28 +36,34 @@ function Todo() {
 
           <div className="date">
             <span>Today</span>
-            <strong>10 Sep</strong>
+            <strong>{day} {month}</strong>
           </div>
         </div>
 
         
 
-        <div class="input-box">
+        <div className="input-box">
           <input onChange={(e) => {setText(e.target.value); }} value={text}  type="text" placeholder="What needs to be done?"/>
-            <button onClick={() => {setTasks([...tasks, text]); setText(""); }}>+ Add Task</button>
+          <button onClick={() => { if (text === "") {
+           console.log("Please enter a task");
+          } else {
+            setTasks([...tasks, text]);
+            setText("");
+          }
+        }}>+ Add Task</button>
         </div> 
 
-        <div class="tasks">
+        <div className="tasks">
 
 
-          {tasks.map((task) => (
-            <div className="task">
-              <div class="check"></div>
+          {tasks.map((task,index) => (
+            <div key={index} className="task">
+              {/* <button className="check"></button> */}
 
               <div className="task-content">
                 <h3>{task}</h3>
               </div>
-              <button onClick={ deelete } className="delete">×</button>
+              <button onClick={() => deelete(index)} className="delete">×</button>
             </div>
           ))}
         </div>
