@@ -113,7 +113,7 @@ h1 {
 }
 
 /* Checkbox */
-
+/* 
 .check {
   width: 22px;
   height: 22px;
@@ -130,7 +130,7 @@ h1 {
 .completed .check {
   background: #7c5cff;
   border-color: #7c5cff;
-}
+} */
 
 /* Task Content */
 
