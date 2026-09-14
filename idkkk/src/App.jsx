@@ -9,7 +9,7 @@ function Todo() {
 
   let [text, setText] = useState("");
   let [tasks, setTasks] = useState([]);
-  let [done,setdone] = useState(0)
+
  
   let date = new Date();
 
