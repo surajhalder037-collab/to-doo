@@ -1,10 +1,15 @@
 
 import { useState } from "react";
+import Task from "./task";
+import Input from "./input";
+import Head from "./header";
+
 
 function Todo() {
 
   let [text, setText] = useState("");
   let [tasks, setTasks] = useState([]);
+  let [done,setdone] = useState(0)
  
   let date = new Date();
 
@@ -16,6 +21,7 @@ function Todo() {
   ];
 
   let month = months[date.getMonth()];
+ 
 
   
    
@@ -26,51 +32,10 @@ function Todo() {
   return (
  <>
  
-      <div className="app">
-
-        <div className="header">
-          <div>
-            <h1>My Tasks</h1>
-            <p>Stay focused. Get things done.</p>
-          </div>
-
-          <div className="date">
-            <span>Today</span>
-            <strong>{day} {month}</strong>
-          </div>
-        </div>
-
-        
-
-        <div className="input-box">
-          <input onChange={(e) => {setText(e.target.value); }} value={text}  type="text" placeholder="What needs to be done?"/>
-          <button onClick={() => { if (text === "") {
-           console.log("Please enter a task");
-          } else {
-            setTasks([...tasks, text]);
-            setText("");
-          }
-        }}>+ Add Task</button>
-        </div> 
-
-        <div className="tasks">
-
-
-          {tasks.map((task,index) => (
-            <div key={index} className="task">
-              {/* <button className="check"></button> */}
-
-              <div className="task-content">
-                <h3>{task}</h3>
-              </div>
-              <button onClick={() => deelete(index)} className="delete">×</button>
-            </div>
-          ))}
-        </div>
-
-      </div>
- 
- 
+      <div className="app"></div>
+      <Head day={day} month={month} />
+      <Input tasks={tasks} text={text} setTasks={setTasks} setText={setText} />
+      <Task deelete={deelete} tasks={tasks} setTasks={setTasks} /> 
  </>
   );
 }
