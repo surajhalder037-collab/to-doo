@@ -1,4 +1,8 @@
 
+
+import { TiDeleteOutline } from "react-icons/ti";
+
+
 function Task({ deelete, tasks, setTasks }) {
 
 
@@ -28,7 +32,7 @@ function Task({ deelete, tasks, setTasks }) {
               <div className="task-content">
                  <h3>{task.name}</h3>
             </div>
-              <button onClick={() => deelete(index)} className="delete">×</button>
+          <button onClick={() => deelete(index)} className="delete">{<TiDeleteOutline />}</button>
            </div>
       })}
 
